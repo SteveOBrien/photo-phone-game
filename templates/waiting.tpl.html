@@ -1,0 +1,9 @@
+<div data-ng-show="ctrl.isActive()">
+	<h4>{{roomId}} Waiting Room</h4>
+	<ul>
+		<li data-ng-repeat="player in ctrl.players track by $index">
+		{{player}}
+		</li>
+	</ul>
+	<input type="button" value="Start Game" data-ng-click="ctrl.start()">
+</div>
