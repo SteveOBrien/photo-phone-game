@@ -12,7 +12,7 @@ function waitingDirective(){
 		controller: 'waitingController',
 		controllerAs: 'ctrl',
 		bindToController: true,
-		templateUrl: '/templates/waiting.tpl.html'
+		templateUrl: '/client/templates/waiting.tpl.html'
 	};
 	return directive;
 }

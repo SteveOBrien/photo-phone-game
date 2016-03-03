@@ -1,6 +1,7 @@
-var app = require('express')()
-  , server = require('http').createServer(app)
-  , io = require('socket.io').listen(server);
+var app = require('express')(),
+	server = require('http').createServer(app),
+	io = require('socket.io').listen(server),
+	path = require('path');
   
 /*************************************************************************************
 						FILE SERVER
@@ -9,11 +10,11 @@ var app = require('express')()
 server.listen(8000);
 
 app.get('/', function (req, res) {
-  res.sendfile(__dirname + '/index.html');
+  res.sendFile(path.resolve(__dirname + '/../client/index.html'));
 });
 
 app.get('*', function (req, res) {
-  res.sendfile(__dirname + '/' + req.url);
+  res.sendFile(path.resolve(__dirname + '/../') + req.url);
 });
 
 /*************************************************************************************

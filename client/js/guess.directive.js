@@ -10,7 +10,7 @@ function guessDirective(){
 		controller: 'guessController',
 		controllerAs: 'ctrl',
 		bindToController: true,
-		templateUrl: '/templates/guess.tpl.html'
+		templateUrl: '/client/templates/guess.tpl.html'
 	};
 	return directive;
 }

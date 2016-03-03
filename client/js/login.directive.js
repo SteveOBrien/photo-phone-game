@@ -1,16 +1,16 @@
 (function(){
 'use strict';
 angular.module('photoTelephoneApp').
-directive('draw', guessDirective);
+directive('login', loginDirective);
 
-function guessDirective(){
+function loginDirective(){
 	var directive = {
 		restrict: 'EA',
 		scope: {},
-		controller: 'drawController',
+		controller: 'loginController',
 		controllerAs: 'ctrl',
 		bindToController: true,
-		templateUrl: '/templates/draw.tpl.html'
+		templateUrl: '/client/templates/login.tpl.html'
 	};
 	return directive;
 }
