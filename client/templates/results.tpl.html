@@ -1,0 +1,45 @@
+<div ng-show="ctrl.isActive()">
+
+    <!--Printable area-->
+    <div class="printable" id="printable" style="background-color:#FFF">
+        <h2 class="heading">Game Results</h2>
+        <div ng-repeat="result in ctrl.getResults()[ctrl.currentKey]">
+            <div ng-if="$index > 0">
+                Round {{$index}}
+                <br>
+                &#x25BC;
+            </div>
+            <p ng-if="$index % 2 === 0">
+                {{result.data}} <sub>Submitted by: {{result.user}}</sub>
+            </p>
+            <p ng-if="$index % 2 === 1">
+                <img style="border:1px solid black;" ng-attr-src="{{result.data}}" alt="{{$index}}"/> <sub>Submitted by:
+                {{result.user}}</sub>
+            </p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-6">
+            <button type="button" class="btn btn-default btn-lg btn-block" ng-click="ctrl.switchViewedResult(-1)">
+                Previous
+            </button>
+        </div>
+        <div class="col-xs-6">
+            <button type="button" class="btn btn-default btn-lg btn-block" ng-click="ctrl.switchViewedResult(1)">
+                Next
+            </button>
+        </div>
+    </div>
+
+    <!--TODO implement properly-->
+    <a ng-href="{{ctrl.printUrl}}" ng-attr-download="{{ctrl.getResultsFileName()}}"
+       class="btn btn-default btn-lg btn-block">
+        Save as Image
+    </a>
+
+    <!--TODO implement-->
+    <button type="button" class="btn btn-default btn-lg btn-block">
+        Play Again
+    </button>
+</div>

@@ -1,0 +1,20 @@
+<div ng-show="ctrl.isActive()">
+	<div ng-show="!ctrl.submitted">
+		<p>{{ctrl.getGuess()}}</p>
+		<div class="row">
+			<canvas style="border:1px solid black; cursor:crosshair;" data-drawing>
+			</canvas>
+		</div>
+		<div class="row">
+			<div class="col-xs-6">
+				<button type="button" class="btn btn-primary btn-lg btn-block" ng-click="ctrl.clear()">Clear</button>
+			</div>
+			<div class="col-xs-6">
+				<button type="button" class="btn btn-primary btn-lg btn-block" ng-click="ctrl.submit()">Submit</button>
+			</div>
+		</div>
+	</div>
+	<div ng-show="ctrl.submitted">
+		Drawing submitted! Now lets wait for the others...
+	</div>
+</div>

@@ -1,0 +1,13 @@
+<div data-ng-show="ctrl.isActive()">
+	<h1 class="heading">Room {{ctrl.getPlayerSettings().room}}</h1>
+	Users
+	<ul>
+		<li data-ng-repeat="player in ctrl.players track by $index">
+			{{player}}
+			<sup ng-if="ctrl.getPlayerSettings().name === player">(You)</sup>
+		</li>
+	</ul>
+	<button type="button" data-ng-click="ctrl.start()" class="btn btn-primary btn-lg btn-block">
+		Start
+	</button>
+</div>

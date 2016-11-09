@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="photoTelephoneApp">
+<head>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Photo Telephone</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+          integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link href="css/styles.css" rel="stylesheet">
+    <link href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA/4QAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAERERERERERERAAAAAAAAERAQAAAAAAEBEAEAAAAAEAEQABAAAAEAARAAAQAAEAABEAAAEAEAAAEQAAABEAAAARAAAAEQAAABEAAAEAEAAAEQAAEAABAAARAAEAAAAQABEAEAAAAAEAEQEAAAAAABAREAAAAAAAAREREREREREREAAAAAP/wAAF/6AABv9gAAd+4AAHveAAB9vgAAfn4AAH5+AAB9vgAAe94AAHfuAABv9gAAX/oAAD/8AAAAAAAA"
+          rel="icon" type="image/x-icon"/>
+
+
+    <!--Angular-->
+    <script src="bower_components/angular/angular.min.js"></script>
+    <script src="bower_components/html2canvas/build/html2canvas.min.js"></script>
+
+    <script src="//cdn.socket.io/socket.io-1.3.7.js"></script>
+
+    <script src="js/telephone.module.js"></script>
+
+    <script src="shared/phases.js"></script>
+    <script src="shared/errors-connection.js"></script>
+    <script src="shared/socket-msgs.js"></script>
+
+    <script src="js/config.js"></script>
+    <script src="js/game.service.js"></script>
+    <script src="js/drawing.directive.js"></script>
+    <script src="js/waiting.controller.js"></script>
+    <script src="js/waiting.directive.js"></script>
+    <script src="js/login.controller.js"></script>
+    <script src="js/login.directive.js"></script>
+    <script src="js/guess.controller.js"></script>
+    <script src="js/guess.directive.js"></script>
+    <script src="js/draw.controller.js"></script>
+    <script src="js/draw.directive.js"></script>
+    <script src="js/results.controller.js"></script>
+    <script src="js/results.directive.js"></script>
+</head>
+<body>
+<div class="container">
+    <login></login>
+    <waiting-room></waiting-room>
+    <guess></guess>
+    <draw></draw>
+    <results></results>
+</div>
+</body>
+</html>

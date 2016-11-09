@@ -1,0 +1,1 @@
+This directory contains files that are used by both the client and server.
