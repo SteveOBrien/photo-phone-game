@@ -1,0 +1,25 @@
+{
+  "name": "werewolf",
+  "description": "A version of wereworld where the server will handle the moderation process.",
+  "main": "index.js",
+  "authors": [
+    "Stephen O'Brien"
+  ],
+  "license": "ISC",
+  "moduleType": [],
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.4.7",
+    "angular-ui": "~0.4.0",
+    "bootstrap": "~3.3.5",
+    "socket.io": "~1.3.7"
+  }
+}

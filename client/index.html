@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="photoTelephoneApp">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Photo Telephone</title>
+
+    <!-- Bootstrap -->
+    <link href="/bower_components/bootstrap/dist/bootstrap.min.css" rel="stylesheet">
+	
+	<!--Angular-->
+	<script src="/bower_components/angular/angular.min.js"></script>
+	
+	<script src="//cdn.socket.io/socket.io-1.3.7.js"></script>
+	
+	<script src="/client/js/telephone.module.js"></script>
+	<script src="/client/js/game.service.js"></script>
+	<script src="/client/js/drawing.directive.js"></script>
+	<script src="/client/js/waiting.controller.js"></script>
+	<script src="/client/js/waiting.directive.js"></script>
+	<script src="/client/js/login.controller.js"></script>
+	<script src="/client/js/login.directive.js"></script>
+	<script src="/client/js/guess.controller.js"></script>
+	<script src="/client/js/guess.directive.js"></script>
+	<script src="/client/js/draw.controller.js"></script>
+	<script src="/client/js/draw.directive.js"></script>
+  </head>
+  <body>
+	<login></login>
+	<waiting-room></waiting-room>
+	
+	<guess></guess>
+	<draw></draw>
+	<results></results>
+	
+  </body>
+</html>

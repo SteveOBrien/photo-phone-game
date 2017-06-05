@@ -1,0 +1,17 @@
+<div ng-hide="ctrl.isConnected()">
+	<h1>Photo Telephone</h1>
+	<label>
+		Name:
+	</label>
+	<input type="text" data-ng-model="ctrl.name">
+	<label>
+		Room ID:
+	</label>
+	<input type="text" data-ng-model="ctrl.room">
+	<button value="Enter Game" ng-click="ctrl.login(ctrl.name, ctrl.room)">
+	Login
+	</button>
+	<button value="Create New Game">
+	Create New Game
+	</button>
+</div>
