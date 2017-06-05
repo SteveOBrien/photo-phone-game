@@ -1,41 +1,46 @@
-(function () {
-    'use strict';
-    angular.module('photoTelephoneApp').directive('drawing', drawingDirective);
+import React, {Component} from 'react';
 
-    function drawingDirective() {
-        var drawTracker = {}, //Tracks the various touches so that we can support multitouch drawing
-            MOUSE_ID = Object.freeze('mouse_event'),
-            RADIUS = 3;
+class DrawableCanvas extends Component {
 
-        return {
-            restrict: 'A',
-            link: linkFunc
-        };
+    getValue(){
+        return this.canvas.toDataURL();
+    }
 
-        function linkFunc(scope, element) {
-            var ctx = element[0].getContext('2d');
+    clear(){
+        this.canvas.getContext('2d').clearRect(0, 0, this.canvas.width, this.canvas.height);
+    }
+
+    componentDidMount() {
+
+        if (this.canvas) {
+
+            var drawTracker = {}, //Tracks the various touches so that we can support multitouch drawing
+                MOUSE_ID = Object.freeze('mouse_event'),
+                RADIUS = 3;
+
+            let ctx = this.canvas.getContext('2d');
             ctx.lineJoin = ctx.lineCap = 'round';
 
-            element.bind('mousedown', startDrawingHandler);
-            element.bind('mousemove', function (event) {
+            this.canvas.addEventListener('mousedown', startDrawingHandler);
+            this.canvas.addEventListener('mousemove', function (event) {
                 // get current mouse position
                 if (typeof drawTracker[MOUSE_ID] === typeof {} && event.offsetX !== undefined) {
                     drawTracker[MOUSE_ID].updateCurrentPosition(event.offsetX, event.offsetY);
                     draw();
                 }
             });
-            angular.element(document).bind('mouseup', function () {
+            document.addEventListener('mouseup', function () {
                 // stop drawing
                 delete drawTracker[MOUSE_ID];
             });
 
-            element.bind('touchstart', function (event) {
+            this.canvas.addEventListener('touchstart', function (event) {
                 //Prevent the mousedown handler from firing
                 event.preventDefault();
                 startDrawingHandler(event);
             });
 
-            element.bind('touchend', function (event) {
+            this.canvas.addEventListener('touchend', function (event) {
                 event.preventDefault();
                 var i;
                 for (i = 0; i < event.changedTouches.length; i++) {
@@ -43,7 +48,7 @@
                 }
             });
 
-            element.bind('touchmove', function (event) {
+            this.canvas.addEventListener('touchmove', function (event) {
                 event.preventDefault();
                 var i;
                 if (event.changedTouches !== undefined) { //touch devices
@@ -106,41 +111,59 @@
                 draw(true);
             }
 
-        }
-
-        /**
-         * Represents a position
-         * @param {number} x The starting x position
-         * @param {number} y The starting y position
-         * @constructor
-         */
-        function DrawData(x, y) {
-            this.lastPoint = this.currentPoint = {
-                x: x,
-                y: y
-            };
-
-            this.updateCurrentPosition = function (x, y) {
-                this.currentPoint = {
+            /**
+             * Represents a position
+             * @param {number} x The starting x position
+             * @param {number} y The starting y position
+             * @constructor
+             */
+            function DrawData(x, y) {
+                this.lastPoint = this.currentPoint = {
                     x: x,
                     y: y
                 };
+
+                this.updateCurrentPosition = function (x, y) {
+                    this.currentPoint = {
+                        x: x,
+                        y: y
+                    };
+                }
+
+                this.resetLastPosition = function () {
+                    this.lastPoint = this.currentPoint;
+                };
             }
 
-            this.resetLastPosition = function () {
-                this.lastPoint = this.currentPoint;
-            };
-        }
 
+            function distanceBetween(point1, point2) {
+                return Math.sqrt(Math.pow(point2.x - point1.x, 2) + Math.pow(point2.y - point1.y, 2));
+            }
 
-        function distanceBetween(point1, point2) {
-            return Math.sqrt(Math.pow(point2.x - point1.x, 2) + Math.pow(point2.y - point1.y, 2));
-        }
+            function angleBetween(point1, point2) {
+                return Math.atan2(point2.x - point1.x, point2.y - point1.y);
+            }
 
-        function angleBetween(point1, point2) {
-            return Math.atan2(point2.x - point1.x, point2.y - point1.y);
         }
 
     }
 
-})();
+    render() {
+
+
+        return (
+
+
+            <canvas
+                ref={(canvas) => {this.canvas = canvas;}}>
+            </canvas>
+
+
+        );
+
+
+    }
+
+}
+
+export default DrawableCanvas;

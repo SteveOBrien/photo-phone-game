@@ -1,7 +1,7 @@
+import PHASES from '../../client/src/shared/Phases';
 (function () {
-
-    const PHASES = require('../../shared/phases');
-    const CONNECT_ERROR_CODES = require('../../shared/errors-connection');
+    
+    const CONNECT_ERROR_CODES = require('../../client/src/shared/errors-connection');
     const POSSIBLE_ROOM_CODE_CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     const ROOM_CODE_LENGTH = 4;
 
@@ -10,6 +10,7 @@
     module.exports.init = init;
 
     function init(httpServer) {
+        console.debug('server started');
         var io = require('socket.io')(httpServer).of('/game');
         var rooms = {};
         io.use(function (socket, next) {
@@ -26,7 +27,7 @@
             if (roomCode !== undefined) { //Trying to join a room. Perform some room validation before joining
                 room = rooms[roomCode.toUpperCase()];
 
-                //Check the user is trying to join a room the exists
+                //Check the user is trying to join a room that exists
                 if (room === undefined) {
                     next(new Error(CONNECT_ERROR_CODES.INVALID_ROOM_CODE));
                     return;
@@ -51,12 +52,12 @@
                 roomCode = generateRandomString(POSSIBLE_ROOM_CODE_CHARS, ROOM_CODE_LENGTH);
                 room = rooms[roomCode] = new controllerFactory.TelephoneServerController(io.to(roomCode));
             }
+            console.log('connection attempt');
             initPlayerSocket(socket, room, roomCode, user);
             next();
         });
 
         io.on('connection', function (socket) {
-
             socket.room.sendPlayerListUpdate();
 
             socket.on('disconnect', function () {
@@ -67,10 +68,12 @@
             });
 
             socket.on('start', function () {
+                console.log('starting');
                 socket.room.start();
             });
 
             socket.on('guess', function (data) {
+                console.log('guess submitted', data)
                 socket.room.submitGuess(socket.nickname, data.text);
             });
 

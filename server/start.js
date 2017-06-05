@@ -31,29 +31,10 @@ function ouputListeningAddresses(port) {
     });
 }
 
+ouputListeningAddresses(config.port);
+
 /*************************************************************************************
- FILE SERVER
+ Server Setup
  *************************************************************************************/
-server.listen(config.port || 8000);
-
-//Inform the server admin where the users can access the game
-console.log('Server listening at the following locations: ');
-ouputListeningAddresses(config.port || 8000);
-
-app.get('/', function (req, res) {
-    res.sendFile(path.resolve(__dirname + '/../client/index.html'));
-});
-
-app.get('*', function (req, res) {
-    if (req.url.indexOf("/bower_components/") > -1 || req.url.indexOf("/shared/") > -1) {
-        res.sendFile(path.resolve(__dirname + '/..') + req.url);
-    }
-    else if (req.url.indexOf("/photo_telephone/") > -1) {
-        res.sendFile(path.resolve(__dirname + '/../..') + req.url);
-    }
-    else {
-        res.sendFile(path.resolve(__dirname + '/../client') + req.url);
-    }
-});
-
+server.listen(config.port || 3001);
 socket.init(server);

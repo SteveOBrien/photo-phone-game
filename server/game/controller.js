@@ -1,14 +1,14 @@
+import PHASES from '../../client/src/shared/Phases';
 (function(){
 
     module.exports.TelephoneServerController = TelephoneServerController;
-
-    const PHASES = require('../../shared/phases');
 
     /**
      * Data class used to keep track of player information
      * @param socket The players socket that will be used for communications
      * @constructor
      */
+    //TODO move into own module
     function Player(socket){
         this.entryData = [];//The player 'owns' the drawing and guessing data for the item they have entered
         this.connected = true;//Flag to indicate if the user is still currently connected
@@ -26,6 +26,7 @@
      * @param data The data for the entry
      * @constructor
      */
+    //TODO move into own module
     function Entry(user, data) {
         this.user = user;
         this.data = data;
@@ -63,6 +64,7 @@
 
         function start(){
             //Update the game state and send update to clients
+            console.log('PHASES', PHASES.START);
             updateState(PHASES.START);
 
             //Calculate the play order
@@ -144,18 +146,13 @@
          * Sends the data for the next turn to each player.
          */
         function sendTurnData(){
-            var player = null;
-            var targetPlayer = null;
-            var playerIdx = 0;
-            var targetIdx = 0;
-            var emitKey = (phase === PHASES.GUESSING || phase === PHASES.START) ? 'nextGuess' : 'nextImage';
-            var data = '';
-            for(var name in players){
-                player = players[name];
-                playerIdx = passOrder.indexOf(name);
-                targetIdx = (playerIdx + turnCount) % passOrder.length;
-                targetPlayer = players[passOrder[targetIdx]];
-                data = player.entryData[player.entryData.length - 1].data;
+            let emitKey = (phase === PHASES.GUESSING || phase === PHASES.START) ? 'nextGuess' : 'nextImage';
+            for(let name in players){
+                let player = players[name];
+                let playerIdx = passOrder.indexOf(name);
+                let targetIdx = (playerIdx + turnCount) % passOrder.length;
+                let targetPlayer = players[passOrder[targetIdx]];
+                let data = player.entryData[player.entryData.length - 1].data;
                 targetPlayer.socket.emit(emitKey, data);
                 targetPlayer.targetPlayer = player;
             }

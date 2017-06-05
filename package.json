@@ -1,15 +1,20 @@
 {
-  "name": "Photo Phone",
+  "name": "photo-phone",
   "version": "1.0.0",
   "description": "A web version of the drawing telephone-like party game.",
   "main": "server/start.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "babel-node ./server/start.js --presets es2015,stage-2"
   },
   "author": "Stephen O'Brien",
   "license": "ISC",
   "dependencies": {
     "express": "^4.13.3",
     "socket.io": "^1.3.7"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-stage-2": "^6.24.1"
   }
 }
